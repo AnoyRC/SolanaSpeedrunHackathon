@@ -32,6 +32,8 @@ public class WalletLogin : MonoBehaviour
     public TextMeshProUGUI[] buildingText;
     public TextMeshProUGUI[] developerText;
     public TextMeshProUGUI[] userText;
+    public string address;
+
     void Start()
     {
         web3 = GameObject.Find("Solana").GetComponent<Web3>();
@@ -103,11 +105,15 @@ public class WalletLogin : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    public void Connect() {
+        LoginCheckerWalletAdapter();
+    }
+
     private async void LoginCheckerWalletAdapter()
     {
         //if (Web3.Instance == null) return;
         account = await web3.LoginWalletAdapter();
-        string address = account.ToString();
+        address = account.ToString();
         if (account != null)
         {
             MainMenu.SetActive(true);
@@ -169,7 +175,7 @@ public class WalletLogin : MonoBehaviour
 
     IEnumerator SetButtons_Coroutine()
     {
-        yield return StartCoroutine(GetNFTData_Coroutine("3x8Be1JczaNTAeVmWzsqyrnaQHS6PL9v61MQqpaZc66Q"));
+        yield return StartCoroutine(GetNFTData_Coroutine(address));
        
         foreach (GameObject obj in mintbutton)
         {

@@ -13,6 +13,7 @@ public class BuyingCard : MonoBehaviour
     private string character;
     public GameObject WhitePanel;
     public TMP_Text timer;
+    public WalletLogin walletLogin;
     
     //public GameObject[] mintbutton;
     void Start()
@@ -60,6 +61,7 @@ public class BuyingCard : MonoBehaviour
                 character = "cl207";
                 break;
         }
+        Application.OpenURL(paymentLink);
         StartCoroutine(GetDataWebHook_Coroutine(character));
     }
 
@@ -86,7 +88,7 @@ public class BuyingCard : MonoBehaviour
                     if (request.downloadHandler.text != "Nothing")
                     {
                         dataFetched = true;
-                        StartCoroutine(PostDataMint_Coroutine(character, "5PELFU1W8MRCzAQaMU6ySXCN8F6wy3iXKQMZCJV7QSBe"));
+                        StartCoroutine(PostDataMint_Coroutine(character, walletLogin.address));
                         WhitePanel.SetActive(false);
                     }
                 }
