@@ -24,6 +24,7 @@ public class WalletLogin : MonoBehaviour
     public GameObject MainMenu;
     public GameObject MarketPlace;
     public GameObject CardSelection;
+    public GameObject ConnectSection;
     public GameObject[] mintbutton;
     public GameObject[] selectCards;
     public TMP_Text[] text;
@@ -117,6 +118,7 @@ public class WalletLogin : MonoBehaviour
         if (account != null)
         {
             MainMenu.SetActive(true);
+            ConnectSection.SetActive(false);
         }
         addressField.text = address;
     }
